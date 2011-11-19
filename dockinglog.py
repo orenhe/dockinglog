@@ -45,7 +45,7 @@ def main():
     dock_strings = get_dock_strings()
     parsed_data = parse_dock_strings(dock_strings)
     for item in parsed_data:
-        print item[0], item[1]
+        print item[0], " ".join(item[1])
 
 if __name__ == "__main__":
     main()
