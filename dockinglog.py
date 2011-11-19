@@ -10,13 +10,17 @@ UNDOCK = "-"
 
 def get_dock_strings():
     dock_strings = []
-    for filename in glob.glob(VAR_LOG_MESSAGES+"*"):
+    all_files = [VAR_LOG_MESSAGES]
+    all_files.extend(glob.glob(VAR_LOG_MESSAGES+".*"))
+    all_files.reverse() # ASCENDING
+    for filename in all_files:
         cmdline = ["zgrep", "docking", filename]
         proc = subprocess.Popen(cmdline, stdout=subprocess.PIPE)
-        (stdout, stderr) = proc.communicate()
+        stdout = proc.communicate()[0]
 
         for line in stdout.split("\n"):
             if line:
+                print filename, line
                 dock_strings.append(line)
 
     return dock_strings
