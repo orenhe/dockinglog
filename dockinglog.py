@@ -20,7 +20,6 @@ def get_dock_strings():
 
         for line in stdout.split("\n"):
             if line:
-                print filename, line
                 dock_strings.append(line)
 
     return dock_strings
